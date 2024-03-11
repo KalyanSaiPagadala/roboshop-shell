@@ -37,10 +37,16 @@ VALIDATE $? "disable nodejs"
 dnf module enable nodejs:18 -y
 VALIDATE $? "enable nodejs:18"
 
-useradd roboshop
-VALIDATE $? "roboshop user added "
+id roboshop
+if [ $? ne 0 ]
+then
+    useradd roboshop
+    VALIDATE $? "roboshop user added "
+else
+    echo -e "roboshop user already exist $Y SKIPPING $N"
+fi
 
-mkdir /app
+mkdir  -p /app
 VALIDATE $? "created /app dir"
 
 curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
@@ -48,7 +54,7 @@ VALIDATE $? "downloaded the catalogue application"
 
 cd /app 
 
-unzip /tmp/catalogue.zip
+unzip  -o /tmp/catalogue.zip
 VALIDATE $? "unziped the catalogue application"
 
 npm install 
