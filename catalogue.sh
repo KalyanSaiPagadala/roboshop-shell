@@ -38,7 +38,7 @@ dnf module enable nodejs:18 -y &>> $LOGFILE
 VALIDATE $? "enable nodejs:18"
 
 id roboshop
-if [ $? ne 0 ]
+if [ $? -ne 0 ]
 then
     useradd roboshop
     VALIDATE $? "roboshop user added "
