@@ -57,9 +57,8 @@ cd /app
 unzip  -o /tmp/catalogue.zip &>> $LOGFILE
 VALIDATE $? "unziped the catalogue application"
 
-cd /app 
 
-npm install &>> $LOGFILE
+npm install  &>> $LOGFILE
 VALIDATE $? "dependencies installed "
 
 cp Downloads/dop/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
