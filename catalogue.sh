@@ -37,8 +37,8 @@ VALIDATE $? "disable nodejs"
 dnf module enable nodejs:18 -y &>> $LOGFILE
 VALIDATE $? "enable nodejs:18"
 
-dnf install nodejs -y
-VALIDATE $? "installing  nodejs:18"
+dnf install nodejs -y &>> $LOGFILE
+VALIDATE $? "installing  nodejs:18" 
 
 id roboshop
 if [ $? -ne 0 ]
@@ -64,7 +64,7 @@ VALIDATE $? "unziped the catalogue application"
 npm install  &>> $LOGFILE
 VALIDATE $? "dependencies installed "
 
-cp /saikalyan/Downloads/dop/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /saikalyan/Downloads/dop/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service 
 VALIDATE $? " copying catalogue service"
 
 systemctl daemon-reload &>> $LOGFILE
