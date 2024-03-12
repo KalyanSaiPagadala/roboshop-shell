@@ -64,7 +64,7 @@ VALIDATE $? "unziped the catalogue application"
 npm install  &>> $LOGFILE
 VALIDATE $? "dependencies installed "
 
-cp /Users/saikalyan/Downloads/dop/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service 
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service 
 VALIDATE $? " copying catalogue service"
 
 systemctl daemon-reload &>> $LOGFILE
