@@ -29,23 +29,23 @@ else
     echo "You are root user"
 fi # fi means reverse of if, indicating condition end
 
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>> $LOGFILE
 VALIDATE $? "YUM Repos from the script"
 
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>> $LOGFILE
 VALIDATE $? "YUM Repos for rabbitmq"
 
-dnf install rabbitmq-server -y 
+dnf install rabbitmq-server -y &>> $LOGFILE
 VALIDATE $? "installing rabbitmq"
 
-systemctl enable rabbitmq-server 
+systemctl enable rabbitmq-server &>> $LOGFILE 
 VALIDATE $? "enablling rabbitmq"
 
-systemctl start rabbitmq-server 
+systemctl start rabbitmq-server &>> $LOGFILE
 VALIDATE $? "starting rabbitmq"
 
-rabbitmqctl add_user roboshop roboshop123
+rabbitmqctl add_user roboshop roboshop123 &>> $LOGFILE
 VALIDATE $? "creating user"
 
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> $LOGFILE
 VALIDATE $? "setting permission"

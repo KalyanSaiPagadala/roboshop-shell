@@ -32,13 +32,13 @@ else
 fi # fi means reverse of if, indicating condition end
 
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>> $LOGFILE
 VALIDATE $? "disabling nodejs"
 
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y &>> $LOGFILE
 VALIDATE $? "enabling nodejs:18"
 
-dnf install nodejs -y
+dnf install nodejs -y &>> $LOGFILE
 VALIDATE $? "installing nodejs"
 
 id roboshop
@@ -50,28 +50,28 @@ else
     echo -e "roboshop user alredy exit .....$Y Skipping $N"
 fi
 
-mkdir -p /app
+mkdir -p /app &>> $LOGFILE
 VALIDATE $? "creating /app directory"
 
-curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip
+curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOGFILE
 VALIDATE $? "downloading cart app code"
 
 cd /app
 
-unzip -o /tmp/cart.zip
+unzip -o /tmp/cart.zip &>> $LOGFILE
 VALIDATE $? "unzipping the cart code"
 
-npm install 
+npm install &>> $LOGFILE
 VALIDATE $? "installing dependencies"
 
-cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service
+cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service &>> $LOGFILE
 VALIDATE $? "copied the user service"
 
-systemctl daemon-reload
+systemctl daemon-reload &>> $LOGFILE
 VALIDATE $? "daemon reloding "
 
-systemctl enable cart 
+systemctl enable cart  &>> $LOGFILE
 VALIDATE $? "enabling cart"
 
-systemctl start cart
+systemctl start cart &>> $LOGFILE
 VALIDATE $? "starting cart"
