@@ -55,7 +55,7 @@ VALIDATE $? "unzipping the payment app"
 pip3.6 install -r requirements.txt &>> $LOGFILE
 VALIDATE $? "installing dependencies"
 
-cp /home/centos/rboshop-shell/payment.service /etc/systemd/system/payment.service &>> $LOGFILE
+cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>> $LOGFILE
 VALIDATE $? "coping the payment service"
 
 systemctl daemon-reload &>> $LOGFILE
