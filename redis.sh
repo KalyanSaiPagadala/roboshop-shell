@@ -38,7 +38,7 @@ VALIDATE $? "Enabling Redis 6.2"
 dnf install redis -y &>> $LOGFILE
 VALIDATE $? "installing redis"
 
-sed  -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf &>> $LOGFILE
+sed  -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>> $LOGFILE
 VALIDATE $? "changing the host "
 
 systemctl enable redis &>> $LOGFILE
